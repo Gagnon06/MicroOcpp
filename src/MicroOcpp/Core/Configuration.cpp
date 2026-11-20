@@ -293,8 +293,14 @@ bool safeStringToInt(const char* str, int* result) {
         p++;
     }
 
-    // Check for trailing non-digit characters (allow decimal point for compatibility)
-    if (*p != '\0' && *p != '.') {
+    // Allow a fractional part for compatibility (it is truncated), but nothing else after the digits
+    if (*p == '.') {
+        p++;
+        while (*p >= '0' && *p <= '9') {
+            p++;
+        }
+    }
+    if (*p != '\0') {
         return false;
     }
 
