@@ -122,7 +122,7 @@ protected:
                 //nothing to do
                 return;
             }
-            MO_FREE(tag);
+            free(tag); //the heap profiler allocates its tags with malloc()
             tag = nullptr;
         }
         size_t size = strlen(src) + 1;
@@ -165,7 +165,7 @@ public:
 
     ~MemoryManaged() {
         #if MO_ENABLE_HEAP_PROFILER
-        MO_FREE(tag);
+        free(tag); //the heap profiler allocates its tags with malloc()
         tag = nullptr;
         #endif
     }
@@ -308,7 +308,7 @@ private:
                 //nothing to do
                 return;
             }
-            MO_FREE(tag);
+            free(tag); //the heap profiler allocates its tags with malloc()
             tag = nullptr;
         }
         size_t size = strlen(src) + 1;
@@ -342,7 +342,7 @@ public:
     ~ArduinoJsonAllocator() {
         #if MO_ENABLE_HEAP_PROFILER
         if (tag) {
-            MO_FREE(tag);
+            free(tag); //the heap profiler allocates its tags with malloc()
             tag = nullptr;
         }
         #endif
