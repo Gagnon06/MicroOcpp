@@ -5,6 +5,7 @@
 #ifndef TRANSACTION_H
 #define TRANSACTION_H
 
+#include <MicroOcpp/Platform.h>
 #include <MicroOcpp/Version.h>
 
 /* General Tx defs */
@@ -336,8 +337,8 @@ public:
 
     Vector<std::unique_ptr<Ocpp201::MeterValue>> sampledDataTxEnded;
 
-    unsigned long lastSampleTimeTxUpdated = 0; //0 means not charging right now
-    unsigned long lastSampleTimeTxEnded = 0;
+    MO_TICK_T lastSampleTimeTxUpdated = 0; //0 means not charging right now
+    MO_TICK_T lastSampleTimeTxEnded = 0;
 
     /*
      * Attributes for internal store

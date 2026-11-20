@@ -5,6 +5,7 @@
 #ifndef MO_RESETSERVICE_H
 #define MO_RESETSERVICE_H
 
+#include <MicroOcpp/Platform.h>
 #include <functional>
 
 #include <MicroOcpp/Version.h>
@@ -24,7 +25,7 @@ private:
     std::function<void(bool isHard)> executeReset; //please disconnect WebSocket (MO remains initialized), shut down device and restart with normal initialization routine; on failure reconnect WebSocket
     unsigned int outstandingResetRetries = 0; //0 = do not reset device
     bool isHardReset = false;
-    unsigned long t_resetRetry;
+    MO_TICK_T t_resetRetry;
 
     std::shared_ptr<Configuration> resetRetriesInt;
 
@@ -77,7 +78,7 @@ private:
         std::function<bool()> executeReset; //execute Reset of connector. Return true if Reset will be executed; false if there is a failure to Reset
 
         unsigned int outstandingResetRetries = 0; //0 = do not reset device
-        unsigned long t_resetRetry;
+        MO_TICK_T t_resetRetry;
 
         bool awaitTxStop = false;
 

@@ -80,10 +80,16 @@ MO_EXTERN_C void mocpp_set_console_out(void (*console_out)(const char *msg));
 #endif
 #endif
 
-#ifdef MO_CUSTOM_TIMER
-MO_EXTERN_C void mocpp_set_timer(unsigned long (*get_ms)());
+// Type of mocpp_tick_ms(), in ms. Define it as uint64_t where unsigned long has 32 bits and the tick must not
+// wrap after 49.7 days.
+#ifndef MO_TICK_T
+#define MO_TICK_T unsigned long
+#endif
 
-MO_EXTERN_C unsigned long mocpp_tick_ms_custom();
+#ifdef MO_CUSTOM_TIMER
+MO_EXTERN_C void mocpp_set_timer(MO_TICK_T (*get_ms)());
+
+MO_EXTERN_C MO_TICK_T mocpp_tick_ms_custom();
 #define mocpp_tick_ms mocpp_tick_ms_custom
 #else
 

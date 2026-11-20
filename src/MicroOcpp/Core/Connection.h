@@ -50,12 +50,12 @@ public:
      *
      * DEPRECATED: this function is superseded by isConnected(). Will be removed in MO v2.0
      */
-    virtual unsigned long getLastRecv() {return 0;}
+    virtual MO_TICK_T getLastRecv() {return 0;}
 
     /*
      * Returns the timestamp of the last time a connection got successfully established. Use mocpp_tick_ms() for creating the correct timestamp
      */
-    virtual unsigned long getLastConnected() = 0;
+    virtual MO_TICK_T getLastConnected() = 0;
 
     /*
      * NEW IN v1.1
@@ -79,16 +79,16 @@ private:
     //for simulating connection losses
     bool online = true;
     bool connected = true;
-    unsigned long lastRecv = 0;
-    unsigned long lastConn = 0;
+    MO_TICK_T lastRecv = 0;
+    MO_TICK_T lastConn = 0;
 public:
     LoopbackConnection();
 
     void loop() override;
     bool sendTXT(const char *msg, size_t length) override;
     void setReceiveTXTcallback(ReceiveTXTcallback &receiveTXT) override;
-    unsigned long getLastRecv() override;
-    unsigned long getLastConnected() override;
+    MO_TICK_T getLastRecv() override;
+    MO_TICK_T getLastConnected() override;
 
     void setOnline(bool online); //"online": sent messages are going through
     bool isOnline() {return online;}
@@ -108,7 +108,7 @@ namespace EspWiFi {
 class WSClient : public Connection, public MemoryManaged {
 private:
     WebSocketsClient *wsock;
-    unsigned long lastRecv = 0, lastConnected = 0;
+    MO_TICK_T lastRecv = 0, lastConnected = 0;
 public:
     WSClient(WebSocketsClient *wsock);
 
@@ -118,9 +118,9 @@ public:
 
     void setReceiveTXTcallback(ReceiveTXTcallback &receiveTXT);
 
-    unsigned long getLastRecv() override; //get time of last successful receive in millis
+    MO_TICK_T getLastRecv() override; //get time of last successful receive in millis
 
-    unsigned long getLastConnected() override; //get last connection creation in millis
+    MO_TICK_T getLastConnected() override; //get last connection creation in millis
 
     bool isConnected() override;
 };

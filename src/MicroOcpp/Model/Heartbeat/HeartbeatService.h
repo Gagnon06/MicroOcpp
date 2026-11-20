@@ -5,6 +5,7 @@
 #ifndef MO_HEARTBEATSERVICE_H
 #define MO_HEARTBEATSERVICE_H
 
+#include <MicroOcpp/Platform.h>
 #include <memory>
 
 #include <MicroOcpp/Core/ConfigurationKeyValue.h>
@@ -18,7 +19,7 @@ class HeartbeatService : public MemoryManaged {
 private:
     Context& context;
 
-    unsigned long lastHeartbeat;
+    MO_TICK_T lastHeartbeat;
     std::shared_ptr<Configuration> heartbeatIntervalInt;
 
 public:

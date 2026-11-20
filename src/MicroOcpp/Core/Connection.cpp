@@ -27,11 +27,11 @@ void LoopbackConnection::setReceiveTXTcallback(ReceiveTXTcallback &receiveTXT) {
     this->receiveTXT = receiveTXT;
 }
 
-unsigned long LoopbackConnection::getLastRecv() {
+MO_TICK_T LoopbackConnection::getLastRecv() {
     return lastRecv;
 }
 
-unsigned long LoopbackConnection::getLastConnected() {
+MO_TICK_T LoopbackConnection::getLastConnected() {
     return lastConn;
 }
 
@@ -106,11 +106,11 @@ void WSClient::setReceiveTXTcallback(ReceiveTXTcallback &callback) {
     });
 }
 
-unsigned long WSClient::getLastRecv() {
+MO_TICK_T WSClient::getLastRecv() {
     return lastRecv;
 }
 
-unsigned long WSClient::getLastConnected() {
+MO_TICK_T WSClient::getLastConnected() {
     return lastConnected;
 }
 

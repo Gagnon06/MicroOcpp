@@ -5,6 +5,7 @@
 #ifndef UNLOCKCONNECTOR_H
 #define UNLOCKCONNECTOR_H
 
+#include <MicroOcpp/Platform.h>
 #include <MicroOcpp/Version.h>
 
 #include <MicroOcpp/Core/Operation.h>
@@ -24,7 +25,7 @@ private:
 #if MO_ENABLE_CONNECTOR_LOCK
     std::function<UnlockConnectorResult ()> unlockConnector;
     UnlockConnectorResult cbUnlockResult;
-    unsigned long timerStart = 0; //for timeout
+    MO_TICK_T timerStart = 0; //for timeout
 #endif //MO_ENABLE_CONNECTOR_LOCK
 
     const char *errorCode = nullptr;
@@ -61,7 +62,7 @@ private:
     RemoteControlServiceEvse *rcEvse = nullptr;
 
     UnlockStatus status;
-    unsigned long timerStart = 0; //for timeout
+    MO_TICK_T timerStart = 0; //for timeout
 
     const char *errorCode = nullptr;
 public:

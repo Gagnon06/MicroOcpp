@@ -378,7 +378,7 @@ const Timestamp &Clock::now() {
 
 Timestamp Clock::adjustPrebootTimestamp(const Timestamp& t) {
     auto systemtime_in = t - Timestamp();
-    if (systemtime_in > (int) system_basetime / 1000) {
+    if (systemtime_in > (int) (system_basetime / 1000)) {
         return mocpp_basetime;
     }
     return mocpp_basetime - ((int) (system_basetime / 1000) - systemtime_in);

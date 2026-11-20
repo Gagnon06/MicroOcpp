@@ -5,6 +5,7 @@
 #ifndef MO_CONNECTOR_H
 #define MO_CONNECTOR_H
 
+#include <MicroOcpp/Platform.h>
 #include <MicroOcpp/Model/ConnectorBase/ChargePointStatus.h>
 #include <MicroOcpp/Model/ConnectorBase/ChargePointErrorData.h>
 #include <MicroOcpp/Model/ConnectorBase/UnlockConnectorResult.h>
@@ -58,7 +59,7 @@ private:
     ChargePointStatus currentStatus = ChargePointStatus_UNDEFINED;
     std::shared_ptr<Configuration> minimumStatusDurationInt; //in seconds
     ChargePointStatus reportedStatus = ChargePointStatus_UNDEFINED;
-    unsigned long t_statusTransition = 0;
+    MO_TICK_T t_statusTransition = 0;
 
 #if MO_ENABLE_CONNECTOR_LOCK
     std::function<UnlockConnectorResult()> onUnlockConnector;

@@ -5,6 +5,7 @@
 #ifndef MO_REQUESTQUEUE_H
 #define MO_REQUESTQUEUE_H
 
+#include <MicroOcpp/Platform.h>
 #include <limits>
 
 #include <MicroOcpp/Core/Connection.h>
@@ -68,7 +69,7 @@ private:
     void receiveRequest(JsonArray json, std::unique_ptr<Request> op);
     void receiveResponse(JsonArray json);
 
-    unsigned long sockTrackLastConnected = 0;
+    MO_TICK_T sockTrackLastConnected = 0;
 
     unsigned int nextOpNr = 10; //Nr 0 - 9 reservered for internal purposes
 public:

@@ -5,6 +5,7 @@
 #ifndef MO_METERVALUE_H
 #define MO_METERVALUE_H
 
+#include <MicroOcpp/Platform.h>
 #include <MicroOcpp/Core/Time.h>
 #include <MicroOcpp/Model/Metering/SampledValue.h>
 #include <MicroOcpp/Core/ConfigurationKeyValue.h>
@@ -22,7 +23,7 @@ private:
     int txNr = -1;
     unsigned int opNr = 1;
     unsigned int attemptNr = 0;
-    unsigned long attemptTime = 0;
+    MO_TICK_T attemptTime = 0;
 public:
     MeterValue(const Timestamp& timestamp);
     MeterValue(const MeterValue& other) = delete;
@@ -45,8 +46,8 @@ public:
     void advanceAttemptNr();
     unsigned int getAttemptNr();
 
-    unsigned long getAttemptTime();
-    void setAttemptTime(unsigned long timestamp);
+    MO_TICK_T getAttemptTime();
+    void setAttemptTime(MO_TICK_T timestamp);
 };
 
 class MeterValueBuilder : public MemoryManaged {

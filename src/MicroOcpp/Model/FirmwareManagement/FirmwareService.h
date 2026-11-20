@@ -5,6 +5,7 @@
 #ifndef FIRMWARESERVICE_H
 #define FIRMWARESERVICE_H
 
+#include <MicroOcpp/Platform.h>
 #include <functional>
 #include <memory>
 
@@ -60,7 +61,7 @@ private:
     std::function<bool(const char *location)> onInstall;
 
     unsigned long delayTransition = 0;
-    unsigned long timestampTransition = 0;
+    MO_TICK_T timestampTransition = 0;
 
     enum class UpdateStage {
         Idle,

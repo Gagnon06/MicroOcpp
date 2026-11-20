@@ -97,11 +97,11 @@ unsigned int MeterValue::getAttemptNr() {
     return attemptNr;
 }
 
-unsigned long MeterValue::getAttemptTime() {
+MO_TICK_T MeterValue::getAttemptTime() {
     return attemptTime;
 }
 
-void MeterValue::setAttemptTime(unsigned long timestamp) {
+void MeterValue::setAttemptTime(MO_TICK_T timestamp) {
     this->attemptTime = timestamp;
 }
 

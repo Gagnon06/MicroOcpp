@@ -5,6 +5,7 @@
 #ifndef MO_METERING_CONNECTOR_H
 #define MO_METERING_CONNECTOR_H
 
+#include <MicroOcpp/Platform.h>
 #include <functional>
 #include <memory>
 
@@ -47,7 +48,7 @@ private:
     std::shared_ptr<Configuration> stopTxnSampledDataSelectString;
     std::shared_ptr<Configuration> stopTxnAlignedDataSelectString;
 
-    unsigned long lastSampleTime = 0; //0 means not charging right now
+    MO_TICK_T lastSampleTime = 0; //0 means not charging right now
     Timestamp nextAlignedTime;
     std::shared_ptr<Transaction> transaction;
     bool trackTxRunning = false;

@@ -24,7 +24,7 @@ HeartbeatService::HeartbeatService(Context& context) : MemoryManaged("v16.Heartb
 void HeartbeatService::loop() {
     unsigned long hbInterval = heartbeatIntervalInt->getInt();
     hbInterval *= 1000UL; //conversion s -> ms
-    unsigned long now = mocpp_tick_ms();
+    auto now = mocpp_tick_ms();
 
     if (now - lastHeartbeat >= hbInterval) {
         lastHeartbeat = now;

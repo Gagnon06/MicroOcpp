@@ -9,6 +9,7 @@
 #define MESSAGE_TYPE_CALLRESULT 3
 #define MESSAGE_TYPE_CALLERROR 4
 
+#include <MicroOcpp/Platform.h>
 #include <memory>
 
 #include <MicroOcpp/Core/RequestCallbacks.h>
@@ -32,11 +33,11 @@ private:
     OnReceiveErrorListener onReceiveErrorListener = [] (const char *code, const char *description, JsonObject details) {};
     OnAbortListener onAbortListener = [] () {};
 
-    unsigned long timeout_start = 0;
+    MO_TICK_T timeout_start = 0;
     unsigned long timeout_period = 40000;
     bool timed_out = false;
     
-    unsigned long debugRequest_start = 0;
+    MO_TICK_T debugRequest_start = 0;
 
     bool requestSent = false;
 public:

@@ -28,13 +28,13 @@ void mocpp_set_console_out(void (*console_out)(const char *msg)) {
 #endif
 
 #ifdef MO_CUSTOM_TIMER
-unsigned long (*mocpp_tick_ms_impl)() = nullptr;
+MO_TICK_T (*mocpp_tick_ms_impl)() = nullptr;
 
-void mocpp_set_timer(unsigned long (*get_ms)()) {
+void mocpp_set_timer(MO_TICK_T (*get_ms)()) {
     mocpp_tick_ms_impl = get_ms;
 }
 
-unsigned long mocpp_tick_ms_custom() {
+MO_TICK_T mocpp_tick_ms_custom() {
     if (mocpp_tick_ms_impl) {
         return mocpp_tick_ms_impl();
     } else {

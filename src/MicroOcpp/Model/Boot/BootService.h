@@ -5,6 +5,7 @@
 #ifndef MO_BOOTSERVICE_H
 #define MO_BOOTSERVICE_H
 
+#include <MicroOcpp/Platform.h>
 #include <MicroOcpp/Core/ConfigurationKeyValue.h>
 #include <MicroOcpp/Core/FilesystemAdapter.h>
 #include <MicroOcpp/Core/RequestQueue.h>
@@ -60,7 +61,7 @@ private:
     PreBootQueue preBootQueue;
 
     unsigned long interval_s = MO_BOOT_INTERVAL_DEFAULT;
-    unsigned long lastBootNotification = -1UL / 2;
+    MO_TICK_T lastBootNotification = -1UL / 2;
 
     RegistrationStatus status = RegistrationStatus::Pending;
     
@@ -71,7 +72,7 @@ private:
     bool activatedModel = false;
     bool activatedPostBootCommunication = false;
 
-    unsigned long firstExecutionTimestamp = 0;
+    MO_TICK_T firstExecutionTimestamp = 0;
     bool executedFirstTime = false;
     bool executedLongTime = false;
 
